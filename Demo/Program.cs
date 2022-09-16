@@ -1,4 +1,6 @@
 using Demo.Model;
+using Demo.Model.Interface;
+using Demo.Model.Repository;
 using ITSC_API_GATEWAY_LIB;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
@@ -38,6 +40,7 @@ try
     //                                   .AllowAnyHeader();
     //                      });
     //});
+    builder.Services.AddScoped<IUserRepository, UserRepository>();
     builder.Services.AddITSC(builder.Configuration);
     builder.Services.AddControllers();
     // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
