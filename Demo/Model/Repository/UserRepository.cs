@@ -21,7 +21,7 @@ namespace Demo.Model.Repository
         public async Task<UserEntity> getUserEntity(string lineId)
         {
 
-            UserEntity userEntity = _applicationDBContext.UserEntitys.Where(w => w.LineId == lineId && w.IsDeactivate == false).First();
+            UserEntity userEntity = _applicationDBContext.UserEntitys.Where(w => w.LineId == lineId && w.IsDeactivate == false).FirstOrDefault();
 
             return userEntity;
         }
