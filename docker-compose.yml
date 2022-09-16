@@ -1,0 +1,18 @@
+version: '3.4'
+services:
+        reqevendev:
+                build:
+                        context: Demo
+                container_name: demoapi
+                ports:
+                        - "80:80"
+                restart: always
+                env_file:
+                        - .env
+                environment:
+                        - TZ=Asia/Bangkok
+                volumes:
+                        - /home/cnoc/demodata/upload:/app/upload
+                        - /home/cnoc/demodata/logs:/app/logs
+
+
