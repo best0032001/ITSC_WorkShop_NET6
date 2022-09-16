@@ -62,6 +62,7 @@ try
     app.MapControllers();
 
     app.Run();
+
 }
 catch (Exception ex)
 {
@@ -72,5 +73,9 @@ finally
 {
     NLog.LogManager.Shutdown();
 }
+public partial class Program
+{
+}
+
 
 

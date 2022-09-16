@@ -38,13 +38,13 @@ namespace Demo.Controllers
             this.beginActionITSC(action);
             try
             {
-                //IActionResult actionResult = await checkUser(action);
-                //if ((int)(HttpStatusCode)actionResult.GetType()
-                //.GetProperty("StatusCode")
-                //.GetValue(actionResult, null) != 200)
-                //{
-                //    return actionResult;
-                //}
+                IActionResult actionResult = await checkUser(action);
+                if ((int)(HttpStatusCode)actionResult.GetType()
+                .GetProperty("StatusCode")
+                .GetValue(actionResult, null) != 200)
+                {
+                    return actionResult;
+                }
 
                 APIModel aPIModel = new APIModel();
                 aPIModel.data = null;
