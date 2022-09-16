@@ -60,7 +60,14 @@ try
     app.UseAuthorization();
 
     app.MapControllers();
+    using (var scope = app.Services.CreateScope())
+    {
+        var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDBContext>();
+        IWebHostEnvironment env = builder.Environment;
+        SetData setData = new SetData(env, dbContext);
 
+
+    }
     app.Run();
 
 }

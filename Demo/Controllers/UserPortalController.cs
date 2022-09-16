@@ -1,5 +1,6 @@
 ﻿using Demo.Model.Entitys;
 using Demo.Model.Interface;
+using Demo.Model.Repository;
 using ITSC_API_GATEWAY_LIB;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -46,8 +47,10 @@ namespace Demo.Controllers
                     return actionResult;
                 }
 
+                UserEntity userEntity=await _userRepository.getUserEntity(this._accesstoken);
+                if (userEntity == null) { return StatusCodeITSC(action, 204);  }
                 APIModel aPIModel = new APIModel();
-                aPIModel.data = null;
+                aPIModel.data = userEntity;
                 aPIModel.message = "Success";
                 return OkITSC(aPIModel, action);
 

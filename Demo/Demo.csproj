@@ -30,6 +30,5 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="logs\" />
-	  <Folder Include="Model\Views\" />
 	</ItemGroup>
 </Project>
