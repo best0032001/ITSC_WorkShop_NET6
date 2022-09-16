@@ -19,7 +19,7 @@ namespace Demo.Controllers
             _userRepository = userRepository;
         }
 
-        public async Task<IActionResult> checkUser(String action)
+        private async Task<IActionResult> checkUser(String action)
         {
             if (!await this.checkApp())
             {
