@@ -2,6 +2,7 @@ using Demo.Model;
 using ITSC_API_GATEWAY_LIB;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
+using Microsoft.Extensions.Configuration;
 using NLog;
 using NLog.Web;
 
@@ -12,20 +13,20 @@ try
     logger.Debug("init main");
 
     var builder = WebApplication.CreateBuilder(args);
-
+    IConfiguration Configuration = builder.Configuration;
     // Add services to the container.
     builder.Logging.ClearProviders();
     builder.Logging.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Trace);
     builder.Host.UseNLog();
     builder.Services.AddHttpClient();
-    builder.Services.AddDbContext<ApplicationDBContext>(options => options.UseInMemoryDatabase(databaseName: "ApplicationDBContext").ConfigureWarnings(x => x.Ignore(InMemoryEventId.TransactionIgnoredWarning)));
+   
     if (builder.Environment.IsEnvironment("test"))
     {
-
+        builder.Services.AddDbContext<ApplicationDBContext>(options => options.UseInMemoryDatabase(databaseName: "ApplicationDBContext").ConfigureWarnings(x => x.Ignore(InMemoryEventId.TransactionIgnoredWarning)));
     }
-    else
+    else 
     {
-        
+        builder.Services.AddDbContext<ApplicationDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("xx")));
     }
     //builder.Services.AddCors(options =>
     //{

@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Demo.Model.Entitys;
+using Microsoft.EntityFrameworkCore;
 
 namespace Demo.Model
 {
@@ -8,5 +9,7 @@ namespace Demo.Model
      : base(options)
         {
         }
+
+        public DbSet<UserEntity> UserEntitys { get; set; }
     }
 }

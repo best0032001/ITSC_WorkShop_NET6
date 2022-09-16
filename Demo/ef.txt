@@ -1,0 +1,6 @@
+﻿1.Update-Database -context ApplicationDBContext -Migration 0
+2.Add-Migration Add1 -context ApplicationDBContext
+
+3.Update-Database -context ApplicationDBContext
+
+docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=xx" -p 1433:1433 -d mcr.microsoft.com/mssql/server:2019-latest
