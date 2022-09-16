@@ -1,23 +1,71 @@
-var builder = WebApplication.CreateBuilder(args);
+using Demo.Model;
+using ITSC_API_GATEWAY_LIB;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
+using NLog;
+using NLog.Web;
 
-// Add services to the container.
-
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+Logger logger = null;
+try
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    logger = NLog.LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
+    logger.Debug("init main");
+
+    var builder = WebApplication.CreateBuilder(args);
+
+    // Add services to the container.
+    builder.Logging.ClearProviders();
+    builder.Logging.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Trace);
+    builder.Host.UseNLog();
+    builder.Services.AddHttpClient();
+    builder.Services.AddDbContext<ApplicationDBContext>(options => options.UseInMemoryDatabase(databaseName: "ApplicationDBContext").ConfigureWarnings(x => x.Ignore(InMemoryEventId.TransactionIgnoredWarning)));
+    if (builder.Environment.IsEnvironment("test"))
+    {
+
+    }
+    else
+    {
+        
+    }
+    //builder.Services.AddCors(options =>
+    //{
+    //    options.AddPolicy(name: "_myAllowSpecificOrigins",
+    //                      builder =>
+    //                      {
+    //                          builder.WithOrigins("*")
+    //                                   .AllowAnyMethod()
+    //                                   .AllowAnyHeader();
+    //                      });
+    //});
+    builder.Services.AddITSC(builder.Configuration);
+    builder.Services.AddControllers();
+    // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+    builder.Services.AddEndpointsApiExplorer();
+    builder.Services.AddSwaggerGen();
+
+    var app = builder.Build();
+
+    // Configure the HTTP request pipeline.
+    if (app.Environment.IsDevelopment())
+    {
+        app.UseSwagger();
+        app.UseSwaggerUI();
+    }
+
+    app.UseAuthorization();
+
+    app.MapControllers();
+
+    app.Run();
+}
+catch (Exception ex)
+{
+    logger.Error(ex, "Stopped program because of exception");
+    throw;
+}
+finally
+{
+    NLog.LogManager.Shutdown();
 }
 
-app.UseAuthorization();
 
-app.MapControllers();
-
-app.Run();
