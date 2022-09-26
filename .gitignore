@@ -341,3 +341,6 @@ healthchecksdb
 
 #File Upload
 CMUReqCardBackendV2/upload/
+
+
+*.env
