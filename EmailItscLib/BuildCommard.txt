@@ -1,0 +1,2 @@
+﻿./nuget.exe pack EmailItscLib.csproj
+https://docs.gitlab.com/ee/user/packages/nuget_repository/index.html
