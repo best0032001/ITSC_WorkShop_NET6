@@ -8,6 +8,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<PackageReference Include="EmailItscLib" Version="1.0.0" />
 		<PackageReference Include="ITSC_API_GATEWAY_LIB" Version="5.0.4" />
 		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.7" />
 		<PackageReference Include="Microsoft.IdentityModel.JsonWebTokens" Version="6.15.0" />
@@ -30,9 +31,6 @@
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
 	</ItemGroup>
 	<ItemGroup>
-	  <Folder Include="logs\" />
-	</ItemGroup>
-	<ItemGroup>
-	  <ProjectReference Include="..\EmailItscLib\EmailItscLib.csproj" />
+		<Folder Include="logs\" />
 	</ItemGroup>
 </Project>
