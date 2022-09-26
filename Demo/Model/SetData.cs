@@ -24,6 +24,7 @@ namespace Demo.Model
             userEntity.UserCode = "001";
             userEntity.FullName = "xx xx";
             userEntity.LineId = "x";
+            userEntity.Email = "test@cmu.ac.th";
             _applicationDBContext.UserEntitys.Add(userEntity);
             _applicationDBContext.SaveChanges();
         }

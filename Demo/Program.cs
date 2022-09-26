@@ -1,6 +1,8 @@
 using Demo.Model;
 using Demo.Model.Interface;
 using Demo.Model.Repository;
+using EmailItscLib.ITSC.Interface;
+using EmailItscLib.ITSC.Repository;
 using ITSC_API_GATEWAY_LIB;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
@@ -21,12 +23,12 @@ try
     builder.Logging.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Trace);
     builder.Host.UseNLog();
     builder.Services.AddHttpClient();
-   
+
     if (builder.Environment.IsEnvironment("test"))
     {
         builder.Services.AddDbContext<ApplicationDBContext>(options => options.UseInMemoryDatabase(databaseName: "ApplicationDBContext").ConfigureWarnings(x => x.Ignore(InMemoryEventId.TransactionIgnoredWarning)));
     }
-    else 
+    else
     {
         //builder.Services.AddDbContext<ApplicationDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("xx")));
         builder.Services.AddDbContext<ApplicationDBContext>(options => options.UseInMemoryDatabase(databaseName: "ApplicationDBContext").ConfigureWarnings(x => x.Ignore(InMemoryEventId.TransactionIgnoredWarning)));
@@ -41,6 +43,7 @@ try
     //                                   .AllowAnyHeader();
     //                      });
     //});
+    builder.Services.AddScoped<IEmailRepository, EmailRepository>();
     builder.Services.AddScoped<IUserRepository, UserRepository>();
     builder.Services.AddITSC(builder.Configuration);
     builder.Services.AddControllers();

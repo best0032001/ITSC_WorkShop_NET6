@@ -31,4 +31,7 @@
 	<ItemGroup>
 	  <Folder Include="logs\" />
 	</ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\EmailItscLib\EmailItscLib.csproj" />
+	</ItemGroup>
 </Project>
