@@ -1,2 +1,9 @@
 ﻿./nuget.exe pack EmailItscLib.csproj
 https://docs.gitlab.com/ee/user/packages/nuget_repository/index.html
+
+
+nuget source Add -Name <source_name> -Source "https://gitlab.example.com/api/v4/projects/<your_project_id>/packages/nuget/index.json" -UserName <gitlab_username or deploy_token_username> -Password <gitlab_personal_access_token or deploy_token>
+export GITLAB_PACKAGE_REGISTRY_USERNAME=<gitlab_username or deploy_token_username>
+export GITLAB_PACKAGE_REGISTRY_PASSWORD=<gitlab_personal_access_token or deploy_token>
+
+nuget push EmailItscLib.1.0.0.nupkg -Source "https://gitlab.com/api/v4/projects/xxx/packages/nuget/index.json"
