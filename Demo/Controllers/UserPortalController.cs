@@ -32,6 +32,12 @@ namespace Demo.Controllers
             }
             return Ok();
         }
+         /// <summary>
+        /// API สำหรับ ************************************************************************
+        /// </summary>
+        /// <remarks>
+        ///  demo [{OrganizationID:0,BudgetYear:0,BudgetName:0,BudgetCode:0,BudgetReferenceCode:0} , {OrganizationID:0,BudgetYear:0,BudgetName:0,BudgetCode:0,BudgetReferenceCode:0} ]
+        /// </remarks>
         [HttpGet("v1/User")]
         [ProducesResponseType(typeof(UserEntity), (int)HttpStatusCode.OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
