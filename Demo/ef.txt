@@ -4,6 +4,6 @@
 3.Update-Database -context ApplicationDBContext
 
 docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=xx" -p 1433:1433 -d mcr.microsoft.com/mssql/server:2019-latest
-docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=12345678' -p 1433:1433 -v 'sqldata:/var/opt/mssql/data' -v 'sqllog:/var/opt/mssql/log' -v 'sqlsecrets:/var/opt/mssql/secrets' -d mcr.microsoft.com/mssql/server:2019-latest
+docker run -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=Cmu[12345]' -p 1433:1433 -v 'C:\data:/var/opt/mssql/data' -d mcr.microsoft.com/mssql/server:2019-latest
 
 \\wsl$\docker-desktop-data\data\docker\volumes
